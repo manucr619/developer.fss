@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>FSS Acquiring - API Reference</title>
 
     <style media="screen">
       .highlight table td { padding: 5px; }
@@ -288,7 +288,7 @@
     </script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;Go Lang&quot;,&quot;PHP&quot;,&quot;Java&quot;,&quot;python&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -298,10 +298,10 @@
     <div class="toc-wrapper">
       <img src="images/logo-1e815a84.png" class="logo" alt="" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
+              <a href="#" data-language-name="Go Lang">Go Lang</a>
+              <a href="#" data-language-name="PHP">PHP</a>
+              <a href="#" data-language-name="Java">Java</a>
               <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -315,16 +315,39 @@
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
           </li>
           <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
+            <a href="#payments" class="toc-h1 toc-link" data-title="Payments">Payments</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Get All Kittens">Get All Kittens</a>
+                    <a href="#hosted-payment-api" class="toc-h2 toc-link" data-title="Hosted Payment API">Hosted Payment API</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
+                    <a href="#supported-payments-api" class="toc-h2 toc-link" data-title="Supported Payments API">Supported Payments API</a>
                   </li>
                   <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                    <a href="#tran-portal-api" class="toc-h2 toc-link" data-title="Tran Portal API">Tran Portal API</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#merchant" class="toc-h1 toc-link" data-title="Merchant">Merchant</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#aggregator-onboarding" class="toc-h2 toc-link" data-title="Aggregator Onboarding">Aggregator Onboarding</a>
+                  </li>
+                  <li>
+                    <a href="#merchant-onboarding" class="toc-h2 toc-link" data-title="Merchant Onboarding">Merchant Onboarding</a>
+                  </li>
+                  <li>
+                    <a href="#store-onboarding" class="toc-h2 toc-link" data-title="Store Onboarding">Store Onboarding</a>
+                  </li>
+                  <li>
+                    <a href="#terminal-onboarding" class="toc-h2 toc-link" data-title="Terminal Onboarding">Terminal Onboarding</a>
+                  </li>
+                  <li>
+                    <a href="#account-linking" class="toc-h2 toc-link" data-title="Account Linking">Account Linking</a>
+                  </li>
+                  <li>
+                    <a href="#account-posting" class="toc-h2 toc-link" data-title="Account Posting">Account Posting</a>
                   </li>
               </ul>
           </li>
@@ -333,87 +356,117 @@
           </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key Manu</a></li>
-            <li><a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a></li>
+            <li><a href='#'>Sign Up for a Developer Key</a></li>
+            <li><a href='https://www.fsstech.com/node/1'>Documentation Powered by FSS</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<p>Welcome to the FSS Aquiring Platform You can use our API to access FSS API endpoints, which can POST information on various Payments through Payment Gateway , POSability.</p>
 
-<p>We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>We have language bindings in Shell, PHP, Python, and Java! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
 
-<p>This example API documentation page was created with <a href="https://github.com/slatedocs/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
+<p>This example API documentation page was created by <a href="https://www.fsstech.com/fssacquiring/fsspaymentgateway"> Financial Software and Systems - Payment Gateway </a>.</p>
 <h1 id='authentication'>Authentication</h1>
 <blockquote>
 <p>To authorize, use this code:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'WAlYxI97110109010953 '</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight java tab-java"><code><span class="kn">import</span> <span class="nn">kittn</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="na">authorize</span><span class="o">(</span><span class="err">'</span><span class="nc">WAlYxI97110109010953</span><span class="err">'</span><span class="o">)</span>
 </code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
 curl <span class="s2">"api_endpoint_here"</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: WAlYxI97110109010953"</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">''</span><span class="p">);</span>
 </code></pre></div>
 <blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
+<p>Make sure to replace <code>WAlYxI97110109010953</code> with your API key.</p>
 </blockquote>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
+<p>FSS Acquiring platform uses API keys to allow access to the API. You can register a new Merchant API key at our <a href="http://developers.fssnet.com">developer portal</a>.</p>
 
 <p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
 
-<p><code>Authorization: meowmeowmeow</code></p>
+<p><code>Authorization: WAlYxI97110109010953</code></p>
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>WAlYxI97110109010953</code> with your personal API key.
 </aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h1 id='payments'>Payments</h1><h2 id='hosted-payment-api'>Hosted Payment API</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
+<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'WAlYxI97110109010953'</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="no">Merchants</span><span class="o">.</span><span class="no">POST</span>
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
+<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'WAlYxI97110109010953'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="n">Merchants</span><span class="p">.</span><span class="n">POST</span><span class="p">()</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/Merchants"</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: WAlYxI97110109010953"</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="kd">get</span><span class="p">();</span>
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">WAlYxI97110109010953</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">Merchants</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">Merchants</span><span class="p">.</span><span class="nx">POST</span><span class="p">();</span>
 </code></pre></div>
+<blockquote>
+<p>Request : JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+  </span><span class="nl">"action"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"tranportalId"</span><span class="p">:</span><span class="w"> </span><span class="mi">813784512</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"shipToCountryCd"</span><span class="p">:</span><span class="w"> </span><span class="mi">356</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test@123"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">36</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"customerId"</span><span class="p">:</span><span class="w"> </span><span class="mi">201502889575739</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"merchantResponseURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://fss.product.com/Merchant_Demo_Rest_Api/jsp/fss/HostedPaymentResult.jsp"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"merchantErrorURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://fss.product.com/Merchant_Demo_Rest_Api/jsp/fss/HostedPaymentResult.jsp"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"merchantRefId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1529707420</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf6"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf7"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf8"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf9"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf10"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf11"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf12"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf13"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf14"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf15"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"currencyCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">356</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USA"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"shipToPostalcd"</span><span class="p">:</span><span class="w"> </span><span class="mi">4758845</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"shipToLastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"shipToFirstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Testing"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"shipToAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"chennai"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"shipToPhnNum"</span><span class="p">:</span><span class="w"> </span><span class="mi">7548758433</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"37e3c831c2d59bb7b68a067c467b9abded7670cd"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
+  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint retrieves all kittens.</p>
+<p>This endpoint retrieves all Merchants.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
+<p><code>POST https://manucr619-eval-test.apigee.net/pghosted</code></p>
 <h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
@@ -423,51 +476,125 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
+<td>action</td>
+<td>true</td>
+<td>If set to true, the result will also include datas.</td>
 </tr>
 <tr>
-<td>available</td>
+<td>tranportalId</td>
 <td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>If set to false, the result will include tranportal ID that have already been Registered.</td>
+</tr>
+<tr>
+<td>shipToCountryCd</td>
+<td>true</td>
+<td>If set to false, the result will include Country Code that have already been Registered.</td>
+</tr>
+<tr>
+<td>password</td>
+<td>true</td>
+<td>For auth basic password to Login</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>true</td>
+<td>Transaction Amount</td>
 </tr>
 </tbody></table>
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+Remember — All  API Should include the Bank Unique Key and Merchant Key  
 </aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h2 id='supported-payments-api'>Supported Payments API</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'WAlYxI97110109010953'</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="no">Merchants</span><span class="o">.</span><span class="no">POST</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
+<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'WAlYxI97110109010953'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="n">Merchants</span><span class="p">.</span><span class="n">POST</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/Merchants/2"</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: WAlYxI97110109010953"</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">WAlYxI97110109010953</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">Merchants</span><span class="p">.</span><span class="nx">POST</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
 </code></pre></div>
+<blockquote>
+<p>Request : JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"paymentid"</span><span class="p">:</span><span class="w"> </span><span class="mi">813202017610296300</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"paRes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"tranportalId"</span><span class="p">:</span><span class="w"> </span><span class="mi">81398653223</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test@123"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"13984d73085bf060bb27b09badb2a5de6b242f50"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{{</span><span class="w">
+  </span><span class="nl">"acsSignedContent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"acsTranID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"auth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"authDataEncryptKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"authDataEncryptMandatory"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"authDataEncryptType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"authDataLabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"authDataLength"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"authDataName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"authDataPrompt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"authDataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"authRespCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"avr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"cReq"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"cardType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"cardbalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"custid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"dsTranID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"eci"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"errorCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"errorText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_code_tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_service_tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ivrFlag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"pareq"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"paymentid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"postdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ref"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"threeDSServerTranID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"threeDSSessionData"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"trackid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"tranStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"tranid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf10"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf11"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf12"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf13"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf14"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf15"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf6"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf7"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf8"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf9"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint retrieves a specific kitten.</p>
+<p>This endpoint retrieves a specific Supoorted API for Payment.</p>
 
 <aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
+<p><code>POST https://manucr619-eval-test.apigee.net/pghosted&lt;ID&gt;</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -477,36 +604,138 @@ Remember — a happy kitten is an authenticated kitten!
 </thead><tbody>
 <tr>
 <td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td>The ID of the Merchant to retrieve</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h2 id='tran-portal-api'>Tran Portal API</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'WAlYxI97110109010953'</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="no">Merchants</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 </code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
+<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'WAlYxI97110109010953'</span><span class="p">)</span>
+<span class="n">api</span><span class="p">.</span><span class="n">Merchants</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/Merchants/2"</span>
   <span class="nt">-X</span> DELETE
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: WAlYxI97110109010953"</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">WAlYxI97110109010953</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">Merchants</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
 </code></pre></div>
+<blockquote>
+<p>Request : JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"action"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"card"</span><span class="p">:</span><span class="w"> </span><span class="mi">5360192000000271</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"cvv2"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"currency"</span><span class="p">:</span><span class="w"> </span><span class="mi">356</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"expyear"</span><span class="p">:</span><span class="w"> </span><span class="mi">2014</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"expmonth"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"expday"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"langid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USA"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"member"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"amt"</span><span class="p">:</span><span class="w"> </span><span class="mi">90</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"trackid"</span><span class="p">:</span><span class="w"> </span><span class="mi">5695640238739715000</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"currencycode"</span><span class="p">:</span><span class="w"> </span><span class="mi">356</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"custid"</span><span class="p">:</span><span class="w"> </span><span class="mi">5360192000000271</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"card_PostalCd"</span><span class="p">:</span><span class="w"> </span><span class="mi">7859798</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"card_Address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"chennai"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"card_FirstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"card_LastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"card_Phn_Num"</span><span class="p">:</span><span class="w"> </span><span class="mi">8875498856</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ship_To_Postalcd"</span><span class="p">:</span><span class="w"> </span><span class="mi">4758845</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ship_To_Address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"chennai"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ship_To_FirstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Testing"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ship_To_LastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tes"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ship_To_Phn_Num"</span><span class="p">:</span><span class="w"> </span><span class="mi">7548758433</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ship_To_CountryCd"</span><span class="p">:</span><span class="w"> </span><span class="mi">356</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"cust_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@gmail.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">81398653223</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test@123"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"errorURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://fss.product.com/Merchant_Demo_Rest_Api/jsp/fss/TranPipeResult.jsp"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"responseURL"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://fss.product.com/Merchant_Demo_Rest_Api/jsp/fss/TranPipeResult.jsp"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf6"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf7"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf8"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf9"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf10"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf11"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf12"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf13"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf14"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf15"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
+  </span><span class="nl">"acsSignedContent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"acsTranID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"amt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"auth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"authDataEncryptKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"authDataEncryptMandatory"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"authDataEncryptType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"authDataLabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"authDataLength"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"authDataName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"authDataPrompt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"authDataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"authRespCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"avr"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"cReq"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"cardType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"cardbalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"custid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"dsTranID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"eci"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"errorCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"errorText"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_code_tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_service_tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_text"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ivrFlag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"pareq"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"paymentid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"postdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ref"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"threeDSServerTranID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"threeDSSessionData"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"trackid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"tranStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"tranid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf10"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf11"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf12"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf13"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf14"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf15"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf5"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf6"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf7"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf8"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"udf9"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>This endpoint deletes a specific kitten.</p>
+<p>This endpoint deletes a specific Merchant.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
+<p><code>DELETE https://manucr619-eval-test.apigee.net/pghosted</code></p>
 <h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -516,9 +745,603 @@ Remember — a happy kitten is an authenticated kitten!
 </thead><tbody>
 <tr>
 <td>ID</td>
-<td>The ID of the kitten to delete</td>
+<td>The ID of the Merchant to delete</td>
 </tr>
 </tbody></table>
+<h1 id='merchant'>Merchant</h1><h2 id='aggregator-onboarding'>Aggregator Onboarding</h2>
+<blockquote>
+<p>To authorize, use this code:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'WAlYxI97110109010953 '</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight java tab-java"><code><span class="kn">import</span> <span class="nn">kittn</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="na">authorize</span><span class="o">(</span><span class="err">'</span><span class="nc">WAlYxI97110109010953</span><span class="err">'</span><span class="o">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
+curl <span class="s2">"api_endpoint_here"</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: WAlYxI97110109010953"</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">''</span><span class="p">);</span>
+</code></pre></div>
+<blockquote>
+<p>Request : JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+ </span><span class="nl">"header"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"instId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"602"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API_14948"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"apiType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"AGGR"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"srcAppType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"WEB"</span><span class="w">    
+  </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"aggregators"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"agreementDate"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-25"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"aggregatorCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24082095"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"aggreagatorName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AmazonAlexa"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"aggregatorAddress1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1st Floor Kalpataru Prime IT Park"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"aggregatorAddress2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wagle Industrial Estate"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"aggregatorAddress3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thane"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"aggregatorAddress4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"West"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"countryName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"India"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"cityName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mumbai"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"stateName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"MAHARASHTRA"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"emailId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bristo123@gmail.com"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"postalCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"410206"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"panNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"789654123a"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"salesOrgId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1243625369t8a"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"subMerchantId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"09988"</span><span class="p">,</span><span class="w">
+   </span><span class="nl">"merchantAggregator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y"</span><span class="p">,</span><span class="w">     
+    </span><span class="nl">"recordNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"recordType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">    
+     </span><span class="nl">"visaFlag"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">   
+</span><span class="nl">"marketIndicatorVisa"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"P"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"visaPaymentFacilitatorID"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="p">,</span><span class="w">
+   </span><span class="nl">"independentSalesOrganizationIndcMastercard"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"mastercardPaymentFacilitatorID"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"M1345"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"header"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API_14948"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"instId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"602"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"apiType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AGGR"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"srcAppType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEB"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"errorDesc"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"totalSuccessCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"totalFailureCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"totalCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"response"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"aggregatorCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24082095"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"refNo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"errDes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">""</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Make sure to replace <code>WAlYxI97110109010953</code> with your API key.</p>
+</blockquote>
+
+<p>Onboarding Aggregator API is used to onboard Aggregator by passing aggregator details like Aggregator Name, Address, Aggregator Code etc.</p>
+
+<p><code>Authorization: WAlYxI97110109010953</code></p>
+
+<aside class="notice">
+You must replace <code>WAlYxI97110109010953</code> with your personal API key.
+</aside>
+<h2 id='merchant-onboarding'>Merchant Onboarding</h2>
+<blockquote>
+<p>To authorize, use this code:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'WAlYxI97110109010953 '</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight java tab-java"><code><span class="kn">import</span> <span class="nn">kittn</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="na">authorize</span><span class="o">(</span><span class="err">'</span><span class="nc">WAlYxI97110109010953</span><span class="err">'</span><span class="o">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
+curl <span class="s2">"api_endpoint_here"</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: WAlYxI97110109010953"</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">''</span><span class="p">);</span>
+</code></pre></div>
+<blockquote>
+<p>Request : JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+ </span><span class="nl">"header"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"instId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"602"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API_14948"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"apiType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"AGGR"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"srcAppType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"WEB"</span><span class="w">    
+  </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"aggregators"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"agreementDate"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-25"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"aggregatorCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24082095"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"aggreagatorName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AmazonAlexa"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"aggregatorAddress1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1st Floor Kalpataru Prime IT Park"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"aggregatorAddress2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wagle Industrial Estate"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"aggregatorAddress3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thane"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"aggregatorAddress4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"West"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"countryName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"India"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"cityName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mumbai"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"stateName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"MAHARASHTRA"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"emailId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bristo123@gmail.com"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"postalCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"410206"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"panNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"789654123a"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"salesOrgId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1243625369t8a"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"subMerchantId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"09988"</span><span class="p">,</span><span class="w">
+   </span><span class="nl">"merchantAggregator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y"</span><span class="p">,</span><span class="w">     
+    </span><span class="nl">"recordNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"recordType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">    
+     </span><span class="nl">"visaFlag"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">   
+</span><span class="nl">"marketIndicatorVisa"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"P"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"visaPaymentFacilitatorID"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="p">,</span><span class="w">
+   </span><span class="nl">"independentSalesOrganizationIndcMastercard"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"mastercardPaymentFacilitatorID"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"M1345"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"header"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API_14948"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"instId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"602"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"apiType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AGGR"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"srcAppType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEB"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"errorDesc"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"totalSuccessCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"totalFailureCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"totalCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"response"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"aggregatorCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24082095"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"refNo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"errDes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">""</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Make sure to replace <code>WAlYxI97110109010953</code> with your API key.</p>
+</blockquote>
+
+<p>Onboarding Aggregator API is used to onboard Aggregator by passing aggregator details like Aggregator Name, Address, Aggregator Code etc.</p>
+
+<p><code>Authorization: WAlYxI97110109010953</code></p>
+
+<aside class="notice">
+You must replace <code>WAlYxI97110109010953</code> with your personal API key.
+</aside>
+<h2 id='store-onboarding'>Store Onboarding</h2>
+<blockquote>
+<p>To authorize, use this code:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'WAlYxI97110109010953 '</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight java tab-java"><code><span class="kn">import</span> <span class="nn">kittn</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="na">authorize</span><span class="o">(</span><span class="err">'</span><span class="nc">WAlYxI97110109010953</span><span class="err">'</span><span class="o">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
+curl <span class="s2">"api_endpoint_here"</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: WAlYxI97110109010953"</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">''</span><span class="p">);</span>
+</code></pre></div>
+<blockquote>
+<p>Request : JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+ </span><span class="nl">"header"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"instId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"602"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API_14948"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"apiType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"AGGR"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"srcAppType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"WEB"</span><span class="w">    
+  </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"aggregators"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"agreementDate"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-25"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"aggregatorCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24082095"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"aggreagatorName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AmazonAlexa"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"aggregatorAddress1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1st Floor Kalpataru Prime IT Park"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"aggregatorAddress2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wagle Industrial Estate"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"aggregatorAddress3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thane"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"aggregatorAddress4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"West"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"countryName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"India"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"cityName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mumbai"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"stateName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"MAHARASHTRA"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"emailId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bristo123@gmail.com"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"postalCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"410206"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"panNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"789654123a"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"salesOrgId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1243625369t8a"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"subMerchantId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"09988"</span><span class="p">,</span><span class="w">
+   </span><span class="nl">"merchantAggregator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y"</span><span class="p">,</span><span class="w">     
+    </span><span class="nl">"recordNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"recordType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">    
+     </span><span class="nl">"visaFlag"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">   
+</span><span class="nl">"marketIndicatorVisa"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"P"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"visaPaymentFacilitatorID"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="p">,</span><span class="w">
+   </span><span class="nl">"independentSalesOrganizationIndcMastercard"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"mastercardPaymentFacilitatorID"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"M1345"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"header"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API_14948"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"instId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"602"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"apiType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AGGR"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"srcAppType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEB"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"errorDesc"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"totalSuccessCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"totalFailureCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"totalCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"response"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"aggregatorCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24082095"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"refNo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"errDes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">""</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Make sure to replace <code>WAlYxI97110109010953</code> with your API key.</p>
+</blockquote>
+
+<p>Onboarding Aggregator API is used to onboard Aggregator by passing aggregator details like Aggregator Name, Address, Aggregator Code etc.</p>
+
+<p><code>Authorization: WAlYxI97110109010953</code></p>
+
+<aside class="notice">
+You must replace <code>WAlYxI97110109010953</code> with your personal API key.
+</aside>
+<h2 id='terminal-onboarding'>Terminal Onboarding</h2>
+<blockquote>
+<p>To authorize, use this code:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'WAlYxI97110109010953 '</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight java tab-java"><code><span class="kn">import</span> <span class="nn">kittn</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="na">authorize</span><span class="o">(</span><span class="err">'</span><span class="nc">WAlYxI97110109010953</span><span class="err">'</span><span class="o">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
+curl <span class="s2">"api_endpoint_here"</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: WAlYxI97110109010953"</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">''</span><span class="p">);</span>
+</code></pre></div>
+<blockquote>
+<p>Request : JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+ </span><span class="nl">"header"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"instId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"602"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API_14948"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"apiType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"AGGR"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"srcAppType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"WEB"</span><span class="w">    
+  </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"aggregators"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"agreementDate"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-25"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"aggregatorCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24082095"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"aggreagatorName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AmazonAlexa"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"aggregatorAddress1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1st Floor Kalpataru Prime IT Park"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"aggregatorAddress2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wagle Industrial Estate"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"aggregatorAddress3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thane"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"aggregatorAddress4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"West"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"countryName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"India"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"cityName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mumbai"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"stateName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"MAHARASHTRA"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"emailId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bristo123@gmail.com"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"postalCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"410206"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"panNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"789654123a"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"salesOrgId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1243625369t8a"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"subMerchantId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"09988"</span><span class="p">,</span><span class="w">
+   </span><span class="nl">"merchantAggregator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y"</span><span class="p">,</span><span class="w">     
+    </span><span class="nl">"recordNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"recordType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">    
+     </span><span class="nl">"visaFlag"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">   
+</span><span class="nl">"marketIndicatorVisa"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"P"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"visaPaymentFacilitatorID"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="p">,</span><span class="w">
+   </span><span class="nl">"independentSalesOrganizationIndcMastercard"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"mastercardPaymentFacilitatorID"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"M1345"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"header"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API_14948"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"instId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"602"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"apiType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AGGR"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"srcAppType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEB"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"errorDesc"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"totalSuccessCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"totalFailureCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"totalCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"response"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"aggregatorCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24082095"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"refNo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"errDes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">""</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Make sure to replace <code>WAlYxI97110109010953</code> with your API key.</p>
+</blockquote>
+
+<p>Terminal Onboarding API is used to onboard terminal by passing aggregator details like terminal Name, IP, Device Code etc.</p>
+
+<p><code>Authorization: WAlYxI97110109010953</code></p>
+
+<aside class="notice">
+You must replace <code>WAlYxI97110109010953</code> with your personal API key.
+</aside>
+<h2 id='account-linking'>Account Linking</h2>
+<blockquote>
+<p>To authorize, use this code:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'WAlYxI97110109010953 '</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight java tab-java"><code><span class="kn">import</span> <span class="nn">kittn</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="na">authorize</span><span class="o">(</span><span class="err">'</span><span class="nc">WAlYxI97110109010953</span><span class="err">'</span><span class="o">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
+curl <span class="s2">"api_endpoint_here"</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: WAlYxI97110109010953"</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">''</span><span class="p">);</span>
+</code></pre></div>
+<blockquote>
+<p>Request : JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+ </span><span class="nl">"header"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"instId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"602"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API_14948"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"apiType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"AGGR"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"srcAppType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"WEB"</span><span class="w">    
+  </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"aggregators"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"agreementDate"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-25"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"aggregatorCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24082095"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"aggreagatorName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AmazonAlexa"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"aggregatorAddress1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1st Floor Kalpataru Prime IT Park"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"aggregatorAddress2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wagle Industrial Estate"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"aggregatorAddress3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thane"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"aggregatorAddress4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"West"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"countryName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"India"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"cityName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mumbai"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"stateName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"MAHARASHTRA"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"emailId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bristo123@gmail.com"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"postalCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"410206"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"panNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"789654123a"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"salesOrgId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1243625369t8a"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"subMerchantId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"09988"</span><span class="p">,</span><span class="w">
+   </span><span class="nl">"merchantAggregator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y"</span><span class="p">,</span><span class="w">     
+    </span><span class="nl">"recordNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"recordType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">    
+     </span><span class="nl">"visaFlag"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">   
+</span><span class="nl">"marketIndicatorVisa"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"P"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"visaPaymentFacilitatorID"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="p">,</span><span class="w">
+   </span><span class="nl">"independentSalesOrganizationIndcMastercard"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"mastercardPaymentFacilitatorID"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"M1345"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"header"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API_14948"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"instId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"602"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"apiType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AGGR"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"srcAppType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEB"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"errorDesc"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"totalSuccessCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"totalFailureCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"totalCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"response"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"aggregatorCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24082095"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"refNo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"errDes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">""</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Make sure to replace <code>WAlYxI97110109010953</code> with your API key.</p>
+</blockquote>
+
+<p>Account Linking API is used to Link Accounts by passing merchant details like Aggregator Name, Address, Aggregator Code etc.</p>
+
+<p><code>Authorization: WAlYxI97110109010953</code></p>
+
+<aside class="notice">
+You must replace <code>WAlYxI97110109010953</code> with your personal API key.
+</aside>
+<h2 id='account-posting'>Account Posting</h2>
+<blockquote>
+<p>To authorize, use this code:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'WAlYxI97110109010953 '</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight java tab-java"><code><span class="kn">import</span> <span class="nn">kittn</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="na">authorize</span><span class="o">(</span><span class="err">'</span><span class="nc">WAlYxI97110109010953</span><span class="err">'</span><span class="o">)</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
+curl <span class="s2">"api_endpoint_here"</span>
+  <span class="nt">-H</span> <span class="s2">"Authorization: WAlYxI97110109010953"</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">''</span><span class="p">);</span>
+</code></pre></div>
+<blockquote>
+<p>Request : JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+ </span><span class="nl">"header"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"instId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"602"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API_14948"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"apiType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"AGGR"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"srcAppType"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"WEB"</span><span class="w">    
+  </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"aggregators"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"agreementDate"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-08-25"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"aggregatorCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24082095"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"aggreagatorName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AmazonAlexa"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"aggregatorAddress1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1st Floor Kalpataru Prime IT Park"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"aggregatorAddress2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wagle Industrial Estate"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"aggregatorAddress3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thane"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"aggregatorAddress4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"West"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"countryName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"India"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"cityName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mumbai"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"stateName"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"MAHARASHTRA"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"emailId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bristo123@gmail.com"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"postalCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"410206"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"panNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"789654123a"</span><span class="p">,</span><span class="w">
+     </span><span class="nl">"salesOrgId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1243625369t8a"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"subMerchantId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"09988"</span><span class="p">,</span><span class="w">
+   </span><span class="nl">"merchantAggregator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Y"</span><span class="p">,</span><span class="w">     
+    </span><span class="nl">"recordNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"recordType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">    
+     </span><span class="nl">"visaFlag"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">   
+</span><span class="nl">"marketIndicatorVisa"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"P"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"visaPaymentFacilitatorID"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="p">,</span><span class="w">
+   </span><span class="nl">"independentSalesOrganizationIndcMastercard"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"mastercardPaymentFacilitatorID"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"M1345"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"header"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"API_14948"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"instId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"602"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"apiType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AGGR"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"srcAppType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEB"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"errorDesc"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"body"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"totalSuccessCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"totalFailureCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"totalCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"response"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"aggregatorCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24082095"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"refNo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"errDes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">""</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>Make sure to replace <code>WAlYxI97110109010953</code> with your API key.</p>
+</blockquote>
+
+<p>Account Posting API is used to onboard account by passing aggregator details like Aggregator Name, Address, Aggregator Code etc.</p>
+
+<p><code>Authorization: WAlYxI97110109010953</code></p>
+
+<aside class="notice">
+You must replace <code>WAlYxI97110109010953</code> with your personal API key.
+</aside>
 <h1 id='errors'>Errors</h1>
 <aside class="notice">
 This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
@@ -581,10 +1404,10 @@ This error section is stored in a separate file in <code>includes/_errors.md</co
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
+                <a href="#" data-language-name="Go Lang">Go Lang</a>
+                <a href="#" data-language-name="PHP">PHP</a>
+                <a href="#" data-language-name="Java">Java</a>
                 <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
           </div>
       </div>
     </div>
